@@ -1,69 +1,14 @@
 <meta charset="utf-8">
-<style>
 
-body { 
-  margin: 15px;
-  background-color: #fcf0e1    
-}
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
 
-.title {
-  font: 50px sans-serif;
-  /*color: #15425F;*/
-  font-weight: bold;
-}
-
-.subtitle {
-  font: 30px sans-serif;
-  /*color: #15425F;*/
-  font-weight: bold;
-}
-
-.bar-chart-details {
-  font: 15px sans-serif;
-  font-weight: bold;
-}
-
-.axis text {
-  font: 14px sans-serif;
-  font-weight: bold;
-}
-
-.x.axis text { 
-  display: none; 
-}
-
-.axis path {
-  display: none;
-}
-
-
-.axis.y {
-  text-anchor: start
-}
-
-.axis .tick {
-  stroke-width:1px;
-  stroke-dasharray: 2px 2px;
-  stroke-opacity: .5;
-}
-
-p {
-  font: 20px sans-serif;
-}
-
-/*#details-box {
-  border-style: solid;
-  border-width: 1px;
-}*/
-
-/*svg {
-  border:1px solid #f0f;
-}*/
-</style>
 <body>
-  <div id=skillz-barchart>
+
+  <div id=skillz-barchart-and-details>
     <h1 class='title'>Skillz</h1>
-    <div id='chart'></div>
+    <div id='skillz-chart'></div>
     <div id=details-box>
       <p class=subtitle>Details:</p>
       <div id='details-text'></div>
@@ -71,13 +16,16 @@ p {
   </div>
   <div id=projects-viz>
     <h1 class='title'>Projects</h1>
+    <div id='projects-viz'></div>
     <p>Project viz coming soon</p>
   </div>
   <div id=map-viz>
     <h1 class='title'>Where I've lived and Worked</h1>
     <p>Map viz coming eventually...</p>
   </div>
+
   <script src="https://d3js.org/d3.v4.min.js"></script>
+
   <script>
     var chartMargin = {top: 0, right: 0, bottom: 20, left: 20}
       textMargin = {top: 20, right: 20, bottom: 20, left: 20};
@@ -86,6 +34,8 @@ p {
       chartHeight = 700 - chartMargin.top - chartMargin.bottom
       textHeight = 50 - textMargin.top - textMargin.bottom;
   </script>
+
   <script src="skillz-chart.js"></script>
   <script src="project-viz.js"></script>
+
 </body>

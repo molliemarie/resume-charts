@@ -2,14 +2,7 @@
 
 defaultBarColor = '#E7962A'
 
-// var chartMargin = {top: 0, right: 0, bottom: 20, left: 20}
-//     textMargin = {top: 20, right: 20, bottom: 20, left: 20};
-
-// var width = 1200 - chartMargin.left - chartMargin.right,
-//     chartHeight = 700 - chartMargin.top - chartMargin.bottom
-//     textHeight = 50 - textMargin.top - textMargin.bottom;
-
-var skillChart = d3.select("#chart").append("svg")
+var skillChart = d3.select("#skillz-chart").append("svg")
   .attr("width", width + chartMargin.left + chartMargin.right)
   .attr("height", chartHeight + chartMargin.top + chartMargin.bottom)
   .append("g")

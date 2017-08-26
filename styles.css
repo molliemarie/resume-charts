@@ -1,0 +1,48 @@
+body { 
+  margin: 15px;
+  background-color: #fcf0e1    
+}
+
+.title {
+  font: 50px sans-serif;
+  /*color: #15425F;*/
+  font-weight: bold;
+}
+
+.subtitle {
+  font: 30px sans-serif;
+  /*color: #15425F;*/
+  font-weight: bold;
+}
+
+.bar-chart-details {
+  font: 15px sans-serif;
+  font-weight: bold;
+}
+
+.axis text {
+  font: 14px sans-serif;
+  font-weight: bold;
+}
+
+.x.axis text { 
+  display: none; 
+}
+
+.axis path {
+  display: none;
+}
+
+.axis.y {
+  text-anchor: start
+}
+
+.axis .tick {
+  stroke-width:1px;
+  stroke-dasharray: 2px 2px;
+  stroke-opacity: .5;
+}
+
+p {
+  font: 20px sans-serif;
+}
