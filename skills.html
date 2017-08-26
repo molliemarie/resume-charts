@@ -6,6 +6,8 @@
 }*/
 .bar {
   fill: #6F257F;
+/*  opacity: 0.4;
+  stroke: black;*/
 }
 .axis path,
 .axis line {
@@ -13,6 +15,11 @@
   stroke: #D4D8DA;
   stroke-width: 1px;
   shape-rendering: crispEdges;
+}
+
+.axis text {
+  font: 12px sans-serif;
+  font-weight: bold;
 }
 .x path {
   display: none;
@@ -42,16 +49,11 @@ svg {
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
-// var chartSvg = d3.select("#skill-chart"),
-//     margin = {top: 20, right: 20, bottom: 30, left: 120},
-//     width = +chartSvg.attr("width") - margin.left - margin.right,
-//     height = +chartSvg.attr("height") - margin.top - margin.bottom;
-
-var chartMargin = {top: 20, right: 20, bottom: 20, left: 120}
+var chartMargin = {top: 20, right: 0, bottom: 20, left: 210}
     textMargin = {top: 20, right: 20, bottom: 20, left: 20};
 
 var width = 900 - chartMargin.left - chartMargin.right,
-    chartHeight = 500 - chartMargin.top - chartMargin.bottom
+    chartHeight = 700 - chartMargin.top - chartMargin.bottom
     textHeight = 200 - textMargin.top - textMargin.bottom;
 
 var skillChart = d3.select("#chart").append("svg")
@@ -65,53 +67,22 @@ var skillText = d3.select("#text").append("svg")
   .attr("height", textHeight + textMargin.top + textMargin.bottom)
   .append("g")
   .attr("transform", "translate(" + textMargin.left + "," + textMargin.top + ")");
-  
-// var tooltip = d3.select("body").append("div").attr("class", "toolTip");
-  
+    
 var xScale = d3.scaleLinear()
   .range([0, width]);
 
 var yScale = d3.scaleBand()
-  .rangeRound([chartHeight, 0]);
+  .range([chartHeight, 0])
+  .padding(0.3);
   // .paddingInner(0.5);
 
-// var skillChart = chartSvg.append("g")
-//     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
-
-skillChart.append('rect')
-  .attr('x', 0)
-  .attr('y', 0)
-  .attr('height', chartHeight)
-  .attr('width', width/10*3)
-  .style('fill', '#f99af3')
-  .style('opacity', '.4')
-
-skillChart.append('rect')
-  .attr('x', width/10*3)
-  .attr('y', 0)
-  .attr('height', chartHeight)
-  .attr('width', width/10*3)
-  .style('fill', '#9af9d8')
-  .style('opacity', '.4')
-
-skillChart.append('rect')
-  .attr('x', width/10*6)
-  .attr('y', 0)
-  .attr('height', chartHeight)
-  .attr('width', width/10*4)
-  .style('fill', '#9a9cfc')
-  .style('opacity', '.4')
-  
 d3.csv("skill_rating.csv", function(error, data) {
     if (error) throw error;
 
     console.log(data)
   
-    data = data.sort(function(a, b) { return a.rating - b.rating; });
+    data = data.reverse();
   
-    // x.domain([0, d3.max(data, function(d) { return d.rating; })]);
     xScale.domain([0, 10])
     yScale.domain(data.map(function(d) { return d.skill; })).padding(0.1);
 
@@ -141,14 +112,6 @@ d3.csv("skill_rating.csv", function(error, data) {
             .attr("width", function(d) {return xScale(Math.random() + parseInt(d.rating)); })
 
         });
-        // .on("mousemove", function(d){
-        //     tooltip
-        //       .style("left", d3.event.pageX - 50 + "px")
-        //       .style("top", d3.event.pageY - 70 + "px")
-        //       .style("display", "inline-block")
-        //       .html((d.skill) + "<br>" + "£" + (d.rating));
-        // })
-        // .on("mouseout", function(d){ tooltip.style("display", "none");});
 
 });
 
