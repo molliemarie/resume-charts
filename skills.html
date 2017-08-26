@@ -9,6 +9,12 @@ body {
   margin: 15px;
   background-color: #fcf0e1    
 }
+
+.title {
+  font: 50px sans-serif;
+  color: #15425F;
+  font-weight: bold;
+}
 /*.bar {*/
   /*fill: var(--default-bar-color);*/
 /*  opacity: 0.4;
@@ -49,6 +55,7 @@ svg {
 }
 </style>
 <body>
+<div><p class='skillz-chart title'></p></div>
 <div id='chart'></div>
 <div>
 <p>Output</p>
@@ -59,7 +66,10 @@ svg {
 <script>
 
 defaultBarColor = '#E7962A'
-// myElement.style.setProperty('--default-bar-color', defaultBarColor)
+
+d3.select('.skillz-chart')
+  .append('text')
+  .text("Mollie's Skillz")
 
 var chartMargin = {top: 20, right: 0, bottom: 20, left: 20}
     textMargin = {top: 20, right: 20, bottom: 20, left: 20};
