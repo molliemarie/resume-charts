@@ -26,29 +26,21 @@ d3.csv("projects.csv", function(error, data) {
     buffer = 20
     circlesPerLine = Math.floor(width / (radius * 2 + buffer))
 
-    var projectCircles = projectViz.selectAll('.projectCircle')
+    var projectCircleGroup = projectViz.selectAll('.projectCircleGroup')
     	.data(data)
-    	.enter().append('circle')
-    	.attr('class', 'projectCircle')
-    	.attr('r', radius)
-    	.attr('cx', function(d, i) {
+    	.enter().append('g')
+    	.attr('class', 'projectCircleGroup')
+    	.attr('transform', function(d,i) { 
     		var circleLocation = radius + i*(radius*2 + buffer)
     		if (circleLocation < width) {
-    			return radius + i*(radius*2 + buffer)
+    			var xVal =  radius + i*(radius*2 + buffer)
+    			var yVal =  radius + buffer
     		} else {
-    			return radius*2 + (i-circlesPerLine)*(radius*2 + buffer)
+    			var xVal = radius*2 + (i-circlesPerLine)*(radius*2 + buffer)
+    			var yVal = radius * 3 + buffer
     		}
-    	 })
-    	.attr('cy', function(d, i) {
-    		var circleLocation = radius + i*(radius*2 + buffer)
-    		if (circleLocation < width) {
-    			return radius + buffer
-			} else {
-				return radius * 3 + buffer
-			}
+    		return 'translate('+ xVal +',' + yVal +')'
     	})
-    	.style('fill', function(d, i) { return colorScale(i); })
-    	.style('opacity', defaultOpacity)
     	.on('click', function(d) {
 
     		d3.select('#project-text')
@@ -60,9 +52,29 @@ d3.csv("projects.csv", function(error, data) {
 	        	.attr('r', radius)
 
 	       	d3.select(this)
+	       		.select('circle')
+	       		.transition()
 	       		.attr('r', radius + buffer/2)
 	       		.style('opacity', 1)
-    	})
+
+	       	d3.selectAll('text')
+	       		.style('font-weight', 'normal')
+
+	       	d3.select(this)
+	       		.select('text')
+	       		.style('font-weight', 'bold')
+    	});
+
+   projectCircleGroup.append('circle')
+   	.attr('r', radius)
+   	.style('fill', function(d, i) { return colorScale(i); })
+   	.style('opacity', defaultOpacity)
+
+  projectCircleGroup.append('text')
+  	.text(function(d) {
+  		return d.project
+  	})
+  	.style('text-anchor', 'middle')
 });
 
 
