@@ -17,6 +17,10 @@ body {
   font-weight: bold;
 }
 
+.x.axis text { 
+  display: none; 
+}
+
 .axis path {
   display: none;
 }
@@ -24,6 +28,12 @@ body {
 
 .axis.y {
   text-anchor: start
+}
+
+.axis .tick {
+  stroke-width:1px;
+  stroke-dasharray: 2px 2px;
+  stroke-opacity: .5;
 }
 
 svg {
@@ -75,7 +85,8 @@ var yScale = d3.scaleBand()
   // .paddingInner(0.5);
 
 var xAxis = d3.axisBottom(xScale)
-  .ticks(0);
+  .ticks(4)
+  .tickSize(-chartHeight);
 
 var yAxis = d3.axisLeft(yScale)
   .tickSize(0)
