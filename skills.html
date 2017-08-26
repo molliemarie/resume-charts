@@ -57,7 +57,7 @@ svg {
 defaultBarColor = '#E7962A'
 // myElement.style.setProperty('--default-bar-color', defaultBarColor)
 
-var chartMargin = {top: 20, right: 0, bottom: 20, left: 210}
+var chartMargin = {top: 20, right: 0, bottom: 20, left: 120}
     textMargin = {top: 20, right: 20, bottom: 20, left: 20};
 
 var width = 1200 - chartMargin.left - chartMargin.right,
@@ -88,6 +88,7 @@ var xAxis = d3.axisBottom(xScale)
   .ticks(0);
 
 var yAxis = d3.axisLeft(yScale)
+  .tickSize(0)
 
 d3.csv("skill_rating.csv", function(error, data) {
     if (error) throw error;
@@ -106,7 +107,9 @@ d3.csv("skill_rating.csv", function(error, data) {
 
     skillChart.append("g")
         .attr("class", "y axis")
-        .call(yAxis);
+        .call(yAxis)
+        .selectAll(".tick text")
+          .call(wrap, chartMargin.left);
 
     skillChart.selectAll(".bar")
         .data(data)
@@ -131,6 +134,30 @@ d3.csv("skill_rating.csv", function(error, data) {
         });
 
 });
+
+function wrap(text, height) {
+  text.each(function() {
+    var text = d3.select(this),
+        words = text.text().split(/\s+/).reverse(),
+        word,
+        line = [],
+        lineNumber = 0,
+        lineHeight = .4, // ems
+        y = text.attr("y"),
+        dy = parseFloat(text.attr("dy")),
+        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+    while (word = words.pop()) {
+      line.push(word);
+      tspan.text(line.join(" "));
+      if (tspan.node().getComputedTextLength() > height) {
+        line.pop();
+        tspan.text(line.join(" "));
+        line = [word];
+        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+      }
+    }
+  });
+}
 
 
 </script>
