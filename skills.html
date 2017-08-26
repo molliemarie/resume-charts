@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <style>
-/*body {
+/*body { 
   margin: 15px;
   background-color: #F1F3F3    
 }*/
@@ -77,6 +77,32 @@ var yScale = d3.scaleBand()
 
 // var skillChart = chartSvg.append("g")
 //     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+
+skillChart.append('rect')
+  .attr('x', 0)
+  .attr('y', 0)
+  .attr('height', chartHeight)
+  .attr('width', width/10*3)
+  .style('fill', '#f99af3')
+  .style('opacity', '.4')
+
+skillChart.append('rect')
+  .attr('x', width/10*3)
+  .attr('y', 0)
+  .attr('height', chartHeight)
+  .attr('width', width/10*3)
+  .style('fill', '#9af9d8')
+  .style('opacity', '.4')
+
+skillChart.append('rect')
+  .attr('x', width/10*6)
+  .attr('y', 0)
+  .attr('height', chartHeight)
+  .attr('width', width/10*4)
+  .style('fill', '#9a9cfc')
+  .style('opacity', '.4')
   
 d3.csv("skill_rating.csv", function(error, data) {
     if (error) throw error;
