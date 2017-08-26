@@ -1,11 +1,16 @@
 <meta charset="utf-8">
 <style>
-/*body { 
-  margin: 15px;
-  background-color: #F1F3F3    
+
+/*:root {
+    --default-bar-color:#E7962A;
 }*/
-.bar {
-  fill: #6F257F;
+
+body { 
+  margin: 15px;
+  background-color: #fcf0e1    
+}
+/*.bar {*/
+  /*fill: var(--default-bar-color);*/
 /*  opacity: 0.4;
   stroke: black;*/
 }
@@ -49,10 +54,13 @@ svg {
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
+defaultBarColor = '#E7962A'
+// myElement.style.setProperty('--default-bar-color', defaultBarColor)
+
 var chartMargin = {top: 20, right: 0, bottom: 20, left: 210}
     textMargin = {top: 20, right: 20, bottom: 20, left: 20};
 
-var width = 900 - chartMargin.left - chartMargin.right,
+var width = 1200 - chartMargin.left - chartMargin.right,
     chartHeight = 700 - chartMargin.top - chartMargin.bottom
     textHeight = 200 - textMargin.top - textMargin.bottom;
 
@@ -76,6 +84,11 @@ var yScale = d3.scaleBand()
   .padding(0.3);
   // .paddingInner(0.5);
 
+var xAxis = d3.axisBottom(xScale)
+  .ticks(0);
+
+var yAxis = d3.axisLeft(yScale)
+
 d3.csv("skill_rating.csv", function(error, data) {
     if (error) throw error;
 
@@ -89,12 +102,11 @@ d3.csv("skill_rating.csv", function(error, data) {
     skillChart.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + chartHeight + ")")
-        .call(d3.axisBottom(xScale)
-            .ticks(0));
+        .call(xAxis);
 
     skillChart.append("g")
         .attr("class", "y axis")
-        .call(d3.axisLeft(yScale));
+        .call(yAxis);
 
     skillChart.selectAll(".bar")
         .data(data)
@@ -104,12 +116,17 @@ d3.csv("skill_rating.csv", function(error, data) {
         .attr("height", yScale.bandwidth())
         .attr("y", function(d) { return yScale(d.skill); })
         .attr("width", function(d) {return xScale(Math.random() + parseInt(d.rating)); })
+        .style('fill', defaultBarColor)
         .on('click', function(d) {
           d3.select('#text')
             .text(d.details)
 
           d3.selectAll('.bar')
             .attr("width", function(d) {return xScale(Math.random() + parseInt(d.rating)); })
+            .style('fill', defaultBarColor)
+
+          d3.select(this)
+            .style('fill', '#ed6e1a')
 
         });
 
