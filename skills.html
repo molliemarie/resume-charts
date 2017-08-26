@@ -1,0 +1,130 @@
+<meta charset="utf-8">
+<style>
+/*body {
+  margin: 15px;
+  background-color: #F1F3F3    
+}*/
+.bar {
+  fill: #6F257F;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #D4D8DA;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+.x path {
+  display: none;
+}
+/*.toolTip {
+  position: absolute;
+  display: none;
+  min-width: 80px;
+  height: auto;
+  background: none repeat scroll 0 0 #ffffff;
+  border: 1px solid #6F257F;
+  padding: 14px;
+  text-align: center;
+}*/
+
+svg {
+  border:1px solid #f0f;
+}
+</style>
+<body>
+<div id='chart'></div>
+<div>
+<p>Output</p>
+</div>
+<div id='text'></div>
+</body>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+// var chartSvg = d3.select("#skill-chart"),
+//     margin = {top: 20, right: 20, bottom: 30, left: 120},
+//     width = +chartSvg.attr("width") - margin.left - margin.right,
+//     height = +chartSvg.attr("height") - margin.top - margin.bottom;
+
+var chartMargin = {top: 20, right: 20, bottom: 20, left: 120}
+    textMargin = {top: 20, right: 20, bottom: 20, left: 20};
+
+var width = 900 - chartMargin.left - chartMargin.right,
+    chartHeight = 500 - chartMargin.top - chartMargin.bottom
+    textHeight = 200 - textMargin.top - textMargin.bottom;
+
+var skillChart = d3.select("#chart").append("svg")
+  .attr("width", width + chartMargin.left + chartMargin.right)
+  .attr("height", chartHeight + chartMargin.top + chartMargin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top + ")");
+
+var skillText = d3.select("#text").append("svg")
+  .attr("width", width + chartMargin.left + chartMargin.right)
+  .attr("height", textHeight + textMargin.top + textMargin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + textMargin.left + "," + textMargin.top + ")");
+  
+// var tooltip = d3.select("body").append("div").attr("class", "toolTip");
+  
+var xScale = d3.scaleLinear()
+  .range([0, width]);
+
+var yScale = d3.scaleBand()
+  .rangeRound([chartHeight, 0]);
+  // .paddingInner(0.5);
+
+// var skillChart = chartSvg.append("g")
+//     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  
+d3.csv("skill_rating.csv", function(error, data) {
+    if (error) throw error;
+
+    console.log(data)
+  
+    data = data.sort(function(a, b) { return a.rating - b.rating; });
+  
+    // x.domain([0, d3.max(data, function(d) { return d.rating; })]);
+    xScale.domain([0, 10])
+    yScale.domain(data.map(function(d) { return d.skill; })).padding(0.1);
+
+    skillChart.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + chartHeight + ")")
+        .call(d3.axisBottom(xScale)
+            .ticks(0));
+
+    skillChart.append("g")
+        .attr("class", "y axis")
+        .call(d3.axisLeft(yScale));
+
+    skillChart.selectAll(".bar")
+        .data(data)
+      .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", 0)
+        .attr("height", yScale.bandwidth())
+        .attr("y", function(d) { return yScale(d.skill); })
+        .attr("width", function(d) {return xScale(Math.random() + parseInt(d.rating)); })
+        .on('click', function(d) {
+          d3.select('#text')
+            .text(d.details)
+
+          d3.selectAll('.bar')
+            .attr("width", function(d) {return xScale(Math.random() + parseInt(d.rating)); })
+
+        });
+        // .on("mousemove", function(d){
+        //     tooltip
+        //       .style("left", d3.event.pageX - 50 + "px")
+        //       .style("top", d3.event.pageY - 70 + "px")
+        //       .style("display", "inline-block")
+        //       .html((d.skill) + "<br>" + "£" + (d.rating));
+        // })
+        // .on("mouseout", function(d){ tooltip.style("display", "none");});
+
+});
+
+
+</script>
