@@ -8,12 +8,23 @@ body {
 
 .title {
   font: 50px sans-serif;
-  color: #15425F;
+  /*color: #15425F;*/
+  font-weight: bold;
+}
+
+.subtitle {
+  font: 30px sans-serif;
+  /*color: #15425F;*/
+  font-weight: bold;
+}
+
+.bar-chart-details {
+  font: 15px sans-serif;
   font-weight: bold;
 }
 
 .axis text {
-  font: 12px sans-serif;
+  font: 14px sans-serif;
   font-weight: bold;
 }
 
@@ -36,33 +47,48 @@ body {
   stroke-opacity: .5;
 }
 
-svg {
-  border:1px solid #f0f;
+p {
+  font: 20px sans-serif;
 }
+
+/*#details-box {
+  border-style: solid;
+  border-width: 1px;
+}*/
+
+/*svg {
+  border:1px solid #f0f;
+}*/
 </style>
 <body>
-<div><h1 class='skillz-chart title'></h1></div>
-<div id='chart'></div>
-<div>
-<p>Output</p>
-</div>
-<div id='text'></div>
+  <div id=skillz-barchart>
+    <h1 class='title'>Skillz</h1>
+    <div id='chart'></div>
+    <div id=details-box>
+      <p class=subtitle>Details:</p>
+      <div id='details-text'></div>
+    </div>
+  </div>
+  <div id=projects-viz>
+    <h1 class='title'>Projects</h1>
+    <p>Project viz coming soon</p>
+  </div>
+  <div id=map-viz>
+    <h1 class='title'>Where I've lived and Worked</h1>
+    <p>Map viz coming eventually...</p>
+  </div>
 </body>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
 defaultBarColor = '#E7962A'
 
-d3.select('.skillz-chart')
-  .append('text')
-  .text("Mollie's Skillz")
-
-var chartMargin = {top: 20, right: 0, bottom: 20, left: 20}
+var chartMargin = {top: 0, right: 0, bottom: 20, left: 20}
     textMargin = {top: 20, right: 20, bottom: 20, left: 20};
 
 var width = 1200 - chartMargin.left - chartMargin.right,
     chartHeight = 700 - chartMargin.top - chartMargin.bottom
-    textHeight = 200 - textMargin.top - textMargin.bottom;
+    textHeight = 50 - textMargin.top - textMargin.bottom;
 
 var skillChart = d3.select("#chart").append("svg")
   .attr("width", width + chartMargin.left + chartMargin.right)
@@ -70,7 +96,7 @@ var skillChart = d3.select("#chart").append("svg")
   .append("g")
   .attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top + ")");
 
-var skillText = d3.select("#text").append("svg")
+var skillDetail = d3.select("#details-text").append("svg")
   .attr("width", width + chartMargin.left + chartMargin.right)
   .attr("height", textHeight + textMargin.top + textMargin.bottom)
   .append("g")
@@ -82,7 +108,6 @@ var xScale = d3.scaleLinear()
 var yScale = d3.scaleBand()
   .range([chartHeight, 0])
   .padding(0.3);
-  // .paddingInner(0.5);
 
 var xAxis = d3.axisBottom(xScale)
   .ticks(4)
@@ -110,28 +135,44 @@ d3.csv("skill_rating.csv", function(error, data) {
     skillChart.append("g")
         .attr("class", "y axis")
         .call(yAxis);
-        // .selectAll(".tick text")
-        //   .call(wrap, chartMargin.left);
 
     skillChart.selectAll(".bar")
         .data(data)
       .enter().append("rect")
-        .attr("class", "bar")
+        .attr("class", function(d) { return "bar " + d.skill.split(' ').join('-')})
         .attr("x", 0)
         .attr("height", yScale.bandwidth())
         .attr("y", function(d) { return yScale(d.skill); })
         .attr("width", function(d) {return xScale(Math.random() + parseInt(d.rating)); })
         .style('fill', defaultBarColor)
+        .style('opacity', 0.8)
         .on('click', function(d) {
-          d3.select('#text')
+
+          var thisBarClass = this.classList[1]
+
+          d3.select('#details-text')
+            .attr('class', 'bar-chart-details')
             .text(d.details)
 
           d3.selectAll('.bar')
-            .attr("width", function(d) {return xScale(Math.random() + parseInt(d.rating)); })
             .style('fill', defaultBarColor)
-
+            .transition()
+            .duration(700)
+            .attr("width", function(d) {return xScale(Math.random() + parseInt(d.rating)); })
+            
           d3.select(this)
             .style('fill', '#ed6e1a')
+
+          // d3.select('text')
+          //   console.log(this)
+          //   // console.log(text)
+          //   // classStyledSkill = d.skill.split(' ').join('-')
+          //   // console.log('text things', classStyledSkill)
+          //   // console.log(text)
+          //   // thisSKill = d.skill
+          //   // console.log(thisSKill)
+          //   // console.log
+          //   // .style('fill', 'red')
 
         });
 
