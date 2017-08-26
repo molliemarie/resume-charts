@@ -46,3 +46,7 @@ body {
 p {
   font: 20px sans-serif;
 }
+
+svg {
+  border:1px solid #f0f;
+}

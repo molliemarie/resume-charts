@@ -6,6 +6,12 @@ var projectViz = d3.select("#projects-viz").append("svg")
   .append("g")
   .attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top + ")");
 
+var skillDetail = d3.select("#project-text").append("svg")
+  .attr("width", width + chartMargin.left + chartMargin.right)
+  .attr("height", textHeight + textMargin.top + textMargin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + textMargin.left + "," + textMargin.top + ")");
+
 
 d3.csv("projects.csv", function(error, data) {
     if (error) throw error;
@@ -42,6 +48,10 @@ d3.csv("projects.csv", function(error, data) {
     	})
     	.style('fill', function(d, i) { return colorScale(i); })
     	.style('opacity', 0.7)
-    	// .attr('transform', function(i, d) { return 'translate(' + i*100 + '0)'});
+    	.on('click', function(d) {
 
+    		d3.select('#project-text')
+	            .attr('class', 'project-text')
+	            .text(d.description)
+    	})
 });
