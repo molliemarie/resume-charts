@@ -63,7 +63,7 @@ d3.csv("skill_rating.csv", function(error, data) {
           var thisBarClass = this.classList[1]
 
           d3.select('#details-text')
-            .attr('class', 'bar-chart-details')
+            .attr('class', 'details-text')
             .text(d.details)
 
           d3.selectAll('.bar')

@@ -15,9 +15,9 @@ body {
   font-weight: bold;
 }
 
-.bar-chart-details {
-  font: 15px sans-serif;
-  font-weight: bold;
+.details-text {
+  font: 25px sans-serif;
+  /*font-weight: bold;*/
 }
 
 .axis text {

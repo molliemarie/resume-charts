@@ -3,7 +3,7 @@ var defaultOpacity = 0.7
 
 var projectViz = d3.select("#projects-viz").append("svg")
   .attr("width", width + chartMargin.left + chartMargin.right)
-  .attr("height", chartHeight + chartMargin.top + chartMargin.bottom)
+  .attr("height", projectHeight + chartMargin.top + chartMargin.bottom)
   .append("g")
   .attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top + ")");
 
@@ -44,7 +44,7 @@ d3.csv("projects.csv", function(error, data) {
     	.on('click', function(d) {
 
     		d3.select('#project-text')
-	            .attr('class', 'project-text')
+	            .attr('class', 'details-text')
 	            .text(d.description)
 
 	        d3.selectAll('circle')
@@ -62,6 +62,7 @@ d3.csv("projects.csv", function(error, data) {
 
 	       	d3.select(this)
 	       		.select('text')
+	       		.transition()
 	       		.style('font-weight', 'bold')
     	});
 
