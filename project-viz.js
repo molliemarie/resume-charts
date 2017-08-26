@@ -1,4 +1,5 @@
 
+var defaultOpacity = 0.7
 
 var projectViz = d3.select("#projects-viz").append("svg")
   .attr("width", width + chartMargin.left + chartMargin.right)
@@ -25,10 +26,10 @@ d3.csv("projects.csv", function(error, data) {
     buffer = 20
     circlesPerLine = Math.floor(width / (radius * 2 + buffer))
 
-    var projectCircles = projectViz.selectAll('.projectCircleGroup')
+    var projectCircles = projectViz.selectAll('.projectCircle')
     	.data(data)
     	.enter().append('circle')
-    	.attr('class', 'projectCircleGroup')
+    	.attr('class', 'projectCircle')
     	.attr('r', radius)
     	.attr('cx', function(d, i) {
     		var circleLocation = radius + i*(radius*2 + buffer)
@@ -41,17 +42,34 @@ d3.csv("projects.csv", function(error, data) {
     	.attr('cy', function(d, i) {
     		var circleLocation = radius + i*(radius*2 + buffer)
     		if (circleLocation < width) {
-    			return radius
+    			return radius + buffer
 			} else {
-				return radius * 3
+				return radius * 3 + buffer
 			}
     	})
     	.style('fill', function(d, i) { return colorScale(i); })
-    	.style('opacity', 0.7)
+    	.style('opacity', defaultOpacity)
     	.on('click', function(d) {
 
     		d3.select('#project-text')
 	            .attr('class', 'project-text')
 	            .text(d.description)
+
+	        d3.selectAll('circle')
+	        	.style('opacity', defaultOpacity)
+	        	.attr('r', radius)
+
+	       	d3.select(this)
+	       		.attr('r', radius + buffer/2)
+	       		.style('opacity', 1)
     	})
 });
+
+
+
+
+
+
+
+
+
