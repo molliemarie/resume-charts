@@ -5,14 +5,6 @@
 </head>
 
 <body>
-  <div id=projects-viz-box>
-    <h1 class='title'>Projects</h1>
-    <div id=projects-viz></div>
-    <div id=project-box>
-      <p class=subtitle>Details:</p>
-      <div id='project-text'></div>
-    </div>
-  </div>
   <div id=skillz-barchart-and-details>
     <h1 class='title'>Skillz</h1>
     <div id='skillz-chart'></div>
@@ -22,17 +14,27 @@
     </div>
   </div>
 
+  <div id=projects-viz-box>
+    <h1 class='title'>Projects</h1>
+    <div id=projects-viz></div>
+    <div id=project-box>
+      <p class=subtitle>Details:</p>
+      <div id='project-text'></div>
+    </div>
+  </div>
+
   <script src="https://d3js.org/d3.v4.min.js"></script>
 
-  <script>
+<!--   <script>
     var chartMargin = {top: 0, right: 0, bottom: 20, left: 20}
       textMargin = {top: 20, right: 20, bottom: 20, left: 20};
 
-    var width = 900 - chartMargin.left - chartMargin.right,
+    var window_width = window.innerWidth;
+    var width = window_width - chartMargin.left - chartMargin.right,
       chartHeight = 500 - chartMargin.top - chartMargin.bottom,
       textHeight = 50 - textMargin.top - textMargin.bottom,
       projectHeight = 500 - chartMargin.top - chartMargin.bottom;
-  </script>
+  </script> -->
 
   <script src="skillz-chart.js"></script>
   <script src="project-viz.js"></script>
@@ -43,10 +45,12 @@
 // Things to do still!
 // 1) remove labels from bar chart, instead attach text and bars to a GROUP so that text is easier to select and can be made bigger n stuff when selected
 // 2) Base the size of the width and height on the size of the screen. This will show you can make thing dynamically for mobile, etc.
+// 2.5) Along these same lines, fix the math of project dots so that screen size doesn't matter so much
 // 3) add descriptions into csv files
 // 4) Make this into letter?
 // 5) Potential to add name chart if I like
 // 6) other random stylings
+// 7) ponder fonts...
 
 
 // Idea: Rather than making this a letter specific to The Pudding, I could make this a general "why Mollie is Awesome" post, which I could post publically on blocks or github.molliemarie.io or whatever it is
