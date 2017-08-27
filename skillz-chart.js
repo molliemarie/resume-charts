@@ -26,6 +26,8 @@ function resize() {
     .attr("height", textHeight + textMargin.top + textMargin.bottom)
     .append("g")
     .attr("transform", "translate(" + textMargin.left + "," + textMargin.top + ")");
+
+  var tooltip = d3.select("body").append("div").attr("class", "toolTip");
       
   var xScale = d3.scaleLinear()
     .range([0, width]);
@@ -78,9 +80,11 @@ function resize() {
 
           var thisBarClass = this.classList[1]
 
-          d3.select('#details-text')
-            .attr('class', 'details-text')
-            .text(d.details)
+          tooltip
+            .style("left", d3.event.pageX - 50 + "px")
+            .style("top", d3.event.pageY - 70 + "px")
+            .style("display", "inline-block")
+            .html(d.details);
 
           d3.selectAll('.bar')
             .style('fill', defaultBarColor)
@@ -91,18 +95,8 @@ function resize() {
           d3.select(this)
             .style('fill', '#ed6e1a')
 
-          // d3.select('text')
-          //   console.log(this)
-          //   // console.log(text)
-          //   // classStyledSkill = d.skill.split(' ').join('-')
-          //   // console.log('text things', classStyledSkill)
-          //   // console.log(text)
-          //   // thisSKill = d.skill
-          //   // console.log(thisSKill)
-          //   // console.log
-          //   // .style('fill', 'red')
-
         });
+
 
     skillChart.append("g")
         .attr("class", "y axis")
