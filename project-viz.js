@@ -15,8 +15,8 @@ function resize() {
 	var projectViz = d3.select("#projects-viz").append("svg")
 	  .attr("width", width + chartMargin.left + chartMargin.right)
 	  .attr("height", projectHeight + chartMargin.top + chartMargin.bottom)
-	  .append("g")
-	  .attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top + ")");
+	  // .append("g")
+	  // .attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top + ")");
 
 	var skillDetail = d3.select("#project-text").append("svg")
 	  .attr("width", width + chartMargin.left + chartMargin.right)
@@ -30,27 +30,26 @@ function resize() {
 	    if (error) throw error;
 
 	    console.log(data);
+	    console.log(data.length);
 
 		var colorScale = d3.scaleOrdinal(d3.schemeCategory10)
-			.domain([0, data.length - 1])
+			.domain([0, data.length - 1]);
 
-	    var radius = 80
-	    buffer = 20
-	    circlesPerLine = Math.floor(width / (radius * 2 + buffer))
+	    var projectCount = data.length;
+	    var circleSpace = (width - 20) / projectCount;
+	    var radius = (circleSpace * .9)/2;
+	    var buffer = circleSpace - radius*2;
+	    // circlesPerLine = Math.floor(width / (radius * 2 + buffer))
+
+	    projectViz.attr('height', (radius * 2 + buffer * 2));
 
 	    var projectCircleGroup = projectViz.selectAll('.projectCircleGroup')
 	    	.data(data)
 	    	.enter().append('g')
 	    	.attr('class', 'projectCircleGroup')
 	    	.attr('transform', function(d,i) { 
-	    		var circleLocation = radius + i*(radius*2 + buffer)
-	    		if (circleLocation < width) {
-	    			var xVal =  radius + i*(radius*2 + buffer)
-	    			var yVal =  radius + buffer
-	    		} else {
-	    			var xVal = radius*2 + (i-circlesPerLine - 1)*(radius*2 + buffer)
-	    			var yVal = radius * 3 + buffer
-	    		}
+    			var xVal =  radius + buffer + i*(radius*2 + buffer)
+    			var yVal =  radius + buffer
 	    		return 'translate('+ xVal +',' + yVal +')'
 	    	})
 	    	.on('click', function(d) {
