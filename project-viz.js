@@ -3,14 +3,8 @@ var defaultOpacity = 0.7
 
 function resize() {
 
-	var chartMargin = {top: 0, right: 0, bottom: 20, left: 20}
-	textMargin = {top: 20, right: 20, bottom: 20, left: 20};
-
 	var window_width = window.innerWidth;
-	var width = window_width - chartMargin.left - chartMargin.right,
-	chartHeight = 500 - chartMargin.top - chartMargin.bottom,
-	textHeight = 50 - textMargin.top - textMargin.bottom,
-	projectHeight = 500 - chartMargin.top - chartMargin.bottom;
+	var width = window_width - chartMargin.left - chartMargin.right
 
 	var projectViz = d3.select("#projects-viz").append("svg")
 	  .attr("width", width + chartMargin.left + chartMargin.right)
