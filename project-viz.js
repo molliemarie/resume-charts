@@ -39,7 +39,6 @@ function resize() {
 	    var circleSpace = (width - 20) / projectCount;
 	    var radius = (circleSpace * .9)/2;
 	    var buffer = circleSpace - radius*2;
-	    // circlesPerLine = Math.floor(width / (radius * 2 + buffer))
 
 	    projectViz.attr('height', (radius * 2 + buffer * 2));
 
