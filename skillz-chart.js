@@ -1,6 +1,7 @@
 
 
 defaultBarColor = '#E7962A'
+hightlightColor = '#ed6e1a'
 
 function resize() {
 
@@ -88,7 +89,7 @@ function resize() {
             .attr("width", function(d) {return xScale(Math.random() + parseInt(d.rating)); })
             
           d3.select(this)
-            .style('fill', '#ed6e1a')
+            .style('fill', hightlightColor)
 
         });
 
@@ -96,6 +97,24 @@ function resize() {
     skillChart.append("g")
         .attr("class", "y axis")
         .call(yAxis);
+
+    skillChart.append("text")
+      .attr('class', 'label-text')
+      .attr("y", -30) //make this based on screen height
+      .attr("x",chartMargin.left + width*.01)
+      .attr("dy", "1em")
+      .style("text-anchor", "left")
+      .text("Meh");
+      // .style('fill', hightlightColor);
+
+    skillChart.append("text")
+      .attr('class', 'label-text')
+      .attr("y", -30) //make this based on screen height
+      .attr("x",width*.86 - chartMargin.right - chartMargin.left)
+      .attr("dy", "1em")
+      .style("text-anchor", "right")
+      .text("So Awesome");
+      // .style('fill', hightlightColor);
 
   }
 }

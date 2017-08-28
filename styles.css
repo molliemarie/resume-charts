@@ -14,6 +14,11 @@ body {
   font-weight: bold;
 }
 
+.default-text {
+  font: 20px sans-serif;
+  font-weight: 300;
+}
+
 .default-text p{
   font: 20px sans-serif;
   font-weight: 300;
@@ -46,9 +51,9 @@ p {
   font: 20px sans-serif;
 }
 
-svg {
+/*svg {
   border:1px solid #f0f;
-}
+}*/
 
 .toolTip {
   position: absolute;
@@ -67,4 +72,9 @@ svg {
 
 .clickable {
   cursor: pointer;
+}
+
+.label-text {
+  font: 25px sans-serif;
+  font-weight: 300;
 }
