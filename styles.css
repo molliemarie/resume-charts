@@ -20,6 +20,11 @@ body {
   font-weight: 300;
 }
 
+#opening-text {
+  font: 20px sans-serif;
+  font-weight: 300;
+}
+
 .axis text {
   font: 14px sans-serif;
   font-weight: bold;

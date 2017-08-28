@@ -3,6 +3,7 @@ var defaultOpacity = 0.7
 
 function resize() {
 
+	d3.selectAll(".details-text").remove();
 	d3.selectAll(".skill-detail").remove();
 
 
@@ -44,9 +45,15 @@ function resize() {
 	    	})
 	    	.on('click', function(d) {
 
-	    		links = d.links.split(';')
+	    		d3.selectAll(".details-text").remove();
+				d3.selectAll("#opening-text").remove();
 
-		       	skillDetail.html(d.description)
+				skillDetail.append('div')
+					.attr('class', 'details-text subtitle')
+					.append('text')
+					.text(d.project)
+
+		       	skillDetail.append('div').html(d.description)
 		       		.attr('class', 'details-text')
 
 		        d3.selectAll('circle')
@@ -78,9 +85,10 @@ function resize() {
 	  		return d.project
 	  	})
 	  	.style('text-anchor', 'middle')
-	  	.style('font-size', div_width * 0.0157325467)
+	  	.style('font-size', div_width * 0.014)
 
-	 skillDetail.append('text').text('Click on project to see project details')
+		skillDetail.append('text').attr('id', 'opening-text').text('Click on project above to see project details')
+
 	}
 }
 
