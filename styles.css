@@ -15,9 +15,9 @@ body {
   font-weight: bold;
 }
 
-.details-text {
+.details-text p {
   font: 20px sans-serif;
-  /*font-weight: bold;*/
+  font-weight: 300;
 }
 
 .axis text {

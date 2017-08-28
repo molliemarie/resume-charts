@@ -45,12 +45,9 @@ function resize() {
 	    	.on('click', function(d) {
 
 	    		links = d.links.split(';')
-	    		console.log(String(d.description))
-
-		        skillDetail.append('text').text('hi hi hi')
-
 
 		       	skillDetail.html(d.description)
+		       		.attr('class', 'details-text')
 
 		        d3.selectAll('circle')
 		        	.style('opacity', defaultOpacity)
