@@ -36,7 +36,7 @@ function resize() {
 	    var projectCircleGroup = projectViz.selectAll('.projectCircleGroup')
 	    	.data(data)
 	    	.enter().append('g')
-	    	.attr('class', 'projectCircleGroup')
+	    	.attr('class', 'projectCircleGroup clickable')
 	    	.attr('transform', function(d,i) { 
     			var xVal =  radius + buffer + i*(radius*2 + buffer)
     			var yVal =  radius + buffer

@@ -65,3 +65,7 @@ svg {
 .small-text {
   font: 12px sans-serif;
 }
+
+.clickable {
+  cursor: pointer;
+}

@@ -64,7 +64,7 @@ function resize() {
     skillChart.selectAll(".bar")
         .data(data)
       .enter().append("rect")
-        .attr("class", function(d) { return "bar " + d.skill.split(' ').join('-')})
+        .attr("class", function(d) { return "bar clickable " + d.skill.split(' ').join('-')})
         .attr("x", 0)
         .attr("height", yScale.bandwidth())
         .attr("y", function(d) { return yScale(d.skill); })
