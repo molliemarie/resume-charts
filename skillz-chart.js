@@ -74,11 +74,11 @@ function resize() {
 
           var thisBarClass = this.classList[1]
 
-          tooltip
-            .style("left", d3.event.pageX - 50 + "px")
-            .style("top", d3.event.pageY - 70 + "px")
-            .style("display", "inline-block")
-            .html(d.details);
+          // tooltip
+          //   .style("left", d3.event.pageX - 50 + "px")
+          //   .style("top", d3.event.pageY - 70 + "px")
+          //   .style("display", "inline-block")
+          //   .html(d.details);
 
           // d3.selectAll(".details-text").remove();
           // d3.selectAll("#opening-text").remove();
