@@ -54,7 +54,7 @@ function resize() {
 					.text(d.project)
 
 		       	skillDetail.append('div').html(d.description)
-		       		.attr('class', 'details-text')
+		       		.attr('class', 'details-text default-text')
 
 		        d3.selectAll('circle')
 		        	.style('opacity', defaultOpacity)
@@ -87,7 +87,7 @@ function resize() {
 	  	.style('text-anchor', 'middle')
 	  	.style('font-size', div_width * 0.014)
 
-		skillDetail.append('text').attr('id', 'opening-text').text('Click on project above to see project details')
+		skillDetail.append('text').attr('id', 'opening-text').attr('class','default-text').text('Click on project above to see project details')
 
 	}
 }

@@ -1,5 +1,4 @@
 body { 
-  margin: 15px;
   background-color: #fcf0e1    
 }
 
@@ -15,12 +14,7 @@ body {
   font-weight: bold;
 }
 
-.details-text p {
-  font: 20px sans-serif;
-  font-weight: 300;
-}
-
-#opening-text {
+.default-text p{
   font: 20px sans-serif;
   font-weight: 300;
 }
