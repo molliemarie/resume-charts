@@ -17,11 +17,9 @@ function resize() {
     .append("g")
     .attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top + ")");
 
-  var skillDetail = d3.select("#details-text").append("svg")
+  var skillDetail = d3.select("#skillz-text").append("div")
     .attr("width", width + chartMargin.left + chartMargin.right)
-    .attr("height", textHeight + textMargin.top + textMargin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + textMargin.left + "," + textMargin.top + ")");
+    .attr("height", textHeight + textMargin.top + textMargin.bottom);
 
   var tooltip = d3.select("body").append("div").attr("class", "toolTip");
       
@@ -81,6 +79,19 @@ function resize() {
             .style("top", d3.event.pageY - 70 + "px")
             .style("display", "inline-block")
             .html(d.details);
+          
+          // d3.selectAll(".details-text").remove();
+          // d3.selectAll("#opening-text").remove();
+
+          // skillDetail.append('div')
+          //   .attr('class', 'details-text subtitle')
+          //   .append('text')
+          //   .text(d.skill)
+
+          // skillDetail.append('div')
+          //   .attr('class', 'details-text default-text')
+          //   .append('text')
+          //   .text(d.details)
 
           d3.selectAll('.bar')
             .style('fill', defaultBarColor)
@@ -105,7 +116,6 @@ function resize() {
       .attr("dy", "1em")
       .style("text-anchor", "left")
       .text("Meh");
-      // .style('fill', hightlightColor);
 
     skillChart.append("text")
       .attr('class', 'label-text')
@@ -114,7 +124,14 @@ function resize() {
       .attr("dy", "1em")
       .style("text-anchor", "right")
       .text("So Awesome");
-      // .style('fill', hightlightColor);
+
+    skillChart.append("text")
+      .attr('class', 'small-text')
+      .attr("y", chartHeight) //make this based on screen height
+      .attr("x",0)
+      .attr("dy", "1em")
+      .style("text-anchor", "right")
+      .text("Note: The values change to acknowledge that they are somewhat arbitrary and mostly just a fun way to show skillz.");
 
   }
 }

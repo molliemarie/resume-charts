@@ -14,6 +14,10 @@
         <h1 class='title'>Skillz</h1>
         <p class='default-text'>Click chart bars below for details</p>
         <div id='skillz-chart'></div>
+        <div id=skillz-box>
+          <!-- <p class=subtitle>Details:</p> -->
+          <div id='skillz-text'></div>
+        </div>
       </div>
     <!-- </div> -->
 
@@ -35,7 +39,7 @@
 </body>
 
   <script>
-      var chartMargin = {top: 40, right: 0, bottom: 20, left: 20};
+      var chartMargin = {top: 40, right: 0, bottom: 40, left: 20};
         textMargin = {top: 20, right: 20, bottom: 20, left: 20};
         chartHeight = 700 - chartMargin.top - chartMargin.bottom;
         textHeight = 100 - textMargin.top - textMargin.bottom;
@@ -54,11 +58,6 @@
 // - add descriptions into csv files
 // - center article at certain size, after that only minimize if it's smaller than a certain size
 // - add disclaimer on skillz plot that all values are arbitrary
-// - add incompetent to awesome labels
-// - Make this into letter?
-// - Potential to add name chart if I like
-// - other random stylings
-// - ponder fonts...
 // - add links section with links to github, bl.ocks, LinkedIn, etc.
 // - remove labels from bar chart, instead attach text and bars to a GROUP so that text is easier to select and can be made bigger n stuff when selected (optional)
 //  - add a cursor

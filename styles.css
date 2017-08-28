@@ -1,31 +1,46 @@
+:root {
+    --font:sans-serif;
+}
+
+:root {
+    --blue-text:#15425F;
+}
+
 body { 
   background-color: #fcf0e1    
 }
 
 .title {
-  font: 50px sans-serif;
+  font: 40px var(--font);
   /*color: #15425F;*/
   font-weight: bold;
+  /*color: var(--blue-text);*/
+}
+
+#main-title {
+  font: 50px var(--font);
+  font-weight: bold;
+  /*color: var(--blue-text);*/
 }
 
 .subtitle {
-  font: 30px sans-serif;
+  font: 30px var(--font);
   /*color: #15425F;*/
   font-weight: bold;
 }
 
 .default-text {
-  font: 20px sans-serif;
+  font: 18px var(--font);
   font-weight: 300;
 }
 
 .default-text p{
-  font: 20px sans-serif;
+  font: 18px var(--font);
   font-weight: 300;
 }
 
 .axis text {
-  font: 14px sans-serif;
+  font: 14px var(--font);
   font-weight: bold;
 }
 
@@ -47,9 +62,9 @@ body {
   stroke-opacity: .5;
 }
 
-p {
-  font: 20px sans-serif;
-}
+/*p {
+  font: 20px var(--font);
+}*/
 
 /*svg {
   border:1px solid #f0f;
@@ -67,7 +82,7 @@ p {
 }
 
 .small-text {
-  font: 12px sans-serif;
+  font: 14px var(--font);
 }
 
 .clickable {
@@ -75,6 +90,6 @@ p {
 }
 
 .label-text {
-  font: 25px sans-serif;
+  font: 25px var(--font);
   font-weight: 300;
 }

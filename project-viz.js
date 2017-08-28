@@ -14,7 +14,7 @@ function resize() {
 	  .attr("width", width + chartMargin.left + chartMargin.right)
 	  .attr("height", projectHeight + chartMargin.top + chartMargin.bottom)
 
-	var skillDetail = d3.select("#project-text").append("div")
+	var projectDetail = d3.select("#project-text").append("div")
 	  .attr('class', 'skill-detail')
 	  .attr("width", width + chartMargin.left + chartMargin.right)
 	  .attr("height", textHeight + textMargin.top + textMargin.bottom)
@@ -23,6 +23,10 @@ function resize() {
 
 	function ready(error, data) {
 	    if (error) throw error;
+
+	    // length_dict = {function(d) {
+	    // 	return 
+	    // }}
 
 		var colorScale = d3.scaleOrdinal(d3.schemeCategory10)
 			.domain([0, data.length - 1]);
@@ -48,12 +52,12 @@ function resize() {
 	    		d3.selectAll(".details-text").remove();
 				d3.selectAll("#opening-text").remove();
 
-				skillDetail.append('div')
+				projectDetail.append('div')
 					.attr('class', 'details-text subtitle')
 					.append('text')
-					.text(d.project)
+					.text(d.longname)
 
-		       	skillDetail.append('div').html(d.description)
+		       	projectDetail.append('div').html(d.description)
 		       		.attr('class', 'details-text default-text')
 
 		        d3.selectAll('circle')
@@ -87,7 +91,7 @@ function resize() {
 	  	.style('text-anchor', 'middle')
 	  	.style('font-size', div_width * 0.014)
 
-		skillDetail.append('text').attr('id', 'opening-text').attr('class','default-text').text('Click on project above to see project details')
+		projectDetail.append('text').attr('id', 'opening-text').attr('class','default-text').text('Click on project above to see project details')
 
 	}
 }
