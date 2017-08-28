@@ -5,7 +5,7 @@ defaultBarColor = '#E7962A'
 function resize() {
 
   d3.selectAll("svg").remove();
-
+  
   var window_width = window.innerWidth;
   var width = window_width - chartMargin.left - chartMargin.right;
 
