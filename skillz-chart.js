@@ -5,9 +5,10 @@ defaultBarColor = '#E7962A'
 function resize() {
 
   d3.selectAll("svg").remove();
-  
-  var window_width = window.innerWidth;
-  var width = window_width - chartMargin.left - chartMargin.right;
+
+  var div_width = d3.select("#skillz-barchart-and-details").node().getBoundingClientRect()['width'];
+  var width = div_width - chartMargin.left - chartMargin.right;
+  var chartHeight = window_height * .5
 
   var skillChart = d3.select("#skillz-chart").append("svg")
     .attr("width", width + chartMargin.left + chartMargin.right)

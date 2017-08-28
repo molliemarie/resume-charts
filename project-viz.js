@@ -6,9 +6,9 @@ function resize() {
 	d3.selectAll(".skill-detail").remove();
 
 
-	var window_width = window.innerWidth;
-	var width = window_width - chartMargin.left - chartMargin.right
-	window_height = window.innerHeight;
+	var div_width = d3.select("#projects-viz-box").node().getBoundingClientRect()['width'];
+	console.log(div_width)
+	var width = div_width - chartMargin.left - chartMargin.right
 
 	var projectViz = d3.select("#projects-viz").append("svg")
 	  .attr("width", width + chartMargin.left + chartMargin.right)
@@ -18,16 +18,11 @@ function resize() {
 	  .attr('class', 'skill-detail')
 	  .attr("width", width + chartMargin.left + chartMargin.right)
 	  .attr("height", textHeight + textMargin.top + textMargin.bottom)
-  	//   .append("g")
-	  // .attr("transform", "translate(" + textMargin.left + "," + textMargin.top + ")");
 
 	d3.csv("projects.csv", ready)
 
 	function ready(error, data) {
 	    if (error) throw error;
-
-	    console.log(data);
-	    console.log(data.length);
 
 		var colorScale = d3.scaleOrdinal(d3.schemeCategory10)
 			.domain([0, data.length - 1]);
@@ -75,26 +70,6 @@ function resize() {
 		       		.select('text')
 		       		.transition()
 		       		.style('font-weight', 'bold')
-
-		       	// d3.select('.skill-detail')
-		       	// 	.append('div')
-		       	// 	// .attr('class', 'test')
-		       	// 	.html("<p>Code.org hired outlier to help them develop a series of surveys to evaluate how they’re doing in their goal to make STEM education more accessible in the classrooms. Outlier then hired Datascope to create a visualization to show off some of said survey responses. The <a href='http://outlier.uchicago.edu/evaluation_codeorg/visualizations/codeorg/'>resulting visualization</a> was created using free-form text-response data from three groups of students in response to the question “What is Computer Science?” This visualization was created for the general public with the hopes of highlighting the size of the study, the individuality of the students, and the uniqueness of the response. </p>")
-		       		// .text(function(d) {
-		       		// 	links = d.links.split(';')
-		       		// })
-		       		// .html("<a href='datascopeanalytics.com'>datascope</a>")
-		       		// .html(function(d) {
-		       		// 	links.foreach(function(d) {
-		       		// 		console.log(d)
-		       		// 		dSplit = d.split(', ')
-		       		// 		console.log(dSplit)
-		       		// 		return "<a href=" + dSplit[1] + ">" + dSplit[0] + "</a>"
-		       		// 	})
-		       		// })
-		       		// .text(function(d) {
-		       		// 	return
-		       		// })
 	    	});
 
 	   projectCircleGroup.append('circle')
@@ -107,6 +82,7 @@ function resize() {
 	  		return d.project
 	  	})
 	  	.style('text-anchor', 'middle')
+	  	.style('font-size', div_width * 0.0157325467)
 
 	 skillDetail.append('text').text('Click on project to see project details')
 	}

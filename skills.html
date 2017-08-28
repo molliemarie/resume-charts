@@ -2,44 +2,57 @@
 
 <head>
   <link rel="stylesheet" href="styles.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
 </head>
 
 <body>
-  <div id=skillz-barchart-and-details>
-    <h1 class='title'>Skillz</h1>
-    <p class='small-text'>Click chart bars for details</p>
-    <div id='skillz-chart'></div>
-  </div>
+  <!-- <div class="container-fluid"> -->
 
-  <div id=projects-viz-box>
-    <h1 class='title'>Projects</h1>
-    <div id=projects-viz></div>
-    <div id=project-box>
-      <p class=subtitle>Details:</p>
-      <div id='project-text'></div>
-    </div>
-  </div>
+    <!-- <div class="row"> -->
+      <!-- <div id=skillz-barchart-and-details class="col-sm-6 col-sm-offset-3"> -->
+      <div id=skillz-barchart-and-details>
+        <h1 class='title'>Skillz</h1>
+        <p class='small-text'>Click chart bars for details</p>
+        <div id='skillz-chart'></div>
+      </div>
+    <!-- </div> -->
+
+    <!-- <div class="row"> -->
+      <!-- <div id=projects-viz-box class="col-sm-6 col-sm-offset-3"> -->
+      <div id=projects-viz-box>
+        <h1 class='title'>Projects</h1>
+        <div id=projects-viz></div>
+        <div id=project-box>
+          <p class=subtitle>Details:</p>
+          <div id='project-text'></div>
+        </div>
+      </div>
+    <!-- </div> -->
+
+  <!-- </div> -->
+
+
+</body>
 
   <script>
       var chartMargin = {top: 0, right: 0, bottom: 20, left: 20};
         textMargin = {top: 20, right: 20, bottom: 20, left: 20};
-        chartHeight = 500 - chartMargin.top - chartMargin.bottom;
+        chartHeight = 700 - chartMargin.top - chartMargin.bottom;
         textHeight = 100 - textMargin.top - textMargin.bottom;
         projectHeight = 500 - chartMargin.top - chartMargin.bottom;
+        window_height = window.innerHeight;
+      console.log(window_height)
   </script>
 
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="skillz-chart.js"></script>
   <script src="project-viz.js"></script>
 
-</body>
-
 <script>
 // Things to do still!
 
 // - add descriptions into csv files
-// - make height dynamic as well. After everything is in, see what height makes sense. Maybe also make margins dynamic?
-// - after all projects are in, see if I need to re-work circle math
+// - center article at certain size, after that only minimize if it's smaller than a certain size
 // - make text size dynamic as well
 // - add disclaimer on skillz plot that all values are arbitrary
 // - add incompetent to awesome labels
@@ -50,6 +63,7 @@
 // - ponder fonts...
 // - add links section with links to github, bl.ocks, LinkedIn, etc.
 // - remove labels from bar chart, instead attach text and bars to a GROUP so that text is easier to select and can be made bigger n stuff when selected (optional)
+//  - add a cursor
 
 // Idea: Rather than making this a letter specific to a certain place, I could make this a general post, which I could post publically on blocks or github.molliemarie.io or whatever it is
 </script>
