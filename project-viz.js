@@ -7,7 +7,6 @@ function resize() {
 
 
 	var div_width = d3.select("#projects-viz-box").node().getBoundingClientRect()['width'];
-	console.log(div_width)
 	var width = div_width - chartMargin.left - chartMargin.right
 
 	var projectViz = d3.select("#projects-viz").append("svg")
